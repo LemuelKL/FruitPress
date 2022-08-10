@@ -1,0 +1,23 @@
+{
+	"pandoc-api-version": [1, 22, 2],
+	"meta": {},
+	"blocks": [
+		{
+			"t": "Para",
+			"c": [{ "t": "Str", "c": "$\\left(\\alpha^2+\\alpha+\\beta^2+\\beta\\right)$" }]
+		},
+		{
+			"t": "BulletList",
+			"c": [
+				[
+					{
+						"t": "Plain",
+						"c": [
+							{ "t": "Str", "c": "$\\left(\\alpha+\\beta\\right)\\left(\\alpha+\\beta+\\right)$" }
+						]
+					}
+				]
+			]
+		}
+	]
+}

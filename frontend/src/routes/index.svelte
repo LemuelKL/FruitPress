@@ -18,26 +18,35 @@
 	};
 
 	import jQuery from 'jquery';
-	let raw_str = Q1.gene.qn;
 	let katex_strs: string[] = [];
 
+    let ddd = ''
+
+	// jquery find and remove class math-tex
+
 	const extract = () => {
-		jQuery(raw_str).find('span.math-tex').each((i, e) => {
-            katex_strs.push(e.innerText.replaceAll(/\\\(/g, '').replaceAll(/\\\)/g, ''));
-            katex_strs = katex_strs
-        });
+        let qn = jQuery('<div>' + Q1.gene.qn + '</div>')
+        qn.find('span.math-tex')
+			.each((i, e) => {
+                e.removeAttribute('class')
+
+				const inline_math = e.innerText.replaceAll(/\\\(/g, '').replaceAll(/\\\)/g, '');
+
+				e.innerHTML = '$' + inline_math + '$';
+			})
+		ddd = qn.html()
 	};
 </script>
 
-<div>
-	{raw_str}
-
+<div class="flex flex-col items-center">
 	<button class="btn btn-blue" on:click={extract}> Extract </button>
 
-    {#each katex_strs as katex_str}
-        <!-- {katex_str} -->
-        <Katex math={katex_str} />
-    {/each}
+	{#each katex_strs as katex_str}
+		<!-- {katex_str} -->
+		<Katex math={katex_str} />
+	{/each}
+
+	{ddd}
 </div>
 
 <!-- <Katex math={Q1.gene.qn}></Katex> -->
