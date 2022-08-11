@@ -1,5 +1,5 @@
 #!/usr/bin/env runhaskell
--- behead.hs
+-- Filter.hs
 import Text.Pandoc.JSON
 import Data.Text
 
@@ -7,21 +7,15 @@ main :: IO ()
 main = toJSONFilter press
 
 press :: Inline -> Inline
--- press (Span (a,(y:ys),c) xs) | y == pack "math-tex" = (Span (a,ys,c) (ass xs))
-press (Span (a,(y:ys),c) xs) | y == pack "math-tex" = Prelude.head (ass xs)
+press (Span (a,(y:ys),c) xs) | y == pack "math-tex" = Prelude.head (convert xs)
 press x = x
 
-ass :: [Inline] -> [Inline]
-ass ((Str x):xs) = [Math InlineMath (Data.Text.dropEnd 2 (Data.Text.drop 2 x))]
-ass xs = xs
+convert :: [Inline] -> [Inline]
+convert ((Str x):xs) = [Math InlineMath (Data.Text.dropEnd 2 (Data.Text.drop 2 x))]
+convert xs = xs
 
--- hole :: Inline -> Inline
--- hole ((Str x):xs) = [Math InlineMath  x]
--- hole xs = xs
-
-
--- (a,(y:ys),c)     (a,ys,c)
-
+-- EXAMPLE INPUT PANDOC AST
+-- 
 -- Pandoc
 --   Meta { unMeta = fromList [] }
 --   [ Para
@@ -41,3 +35,4 @@ ass xs = xs
 --       ]
 --   , Para [ Str "\160" ]
 --   ]
+-- 
