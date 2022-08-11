@@ -7,12 +7,21 @@ main :: IO ()
 main = toJSONFilter press
 
 press :: Inline -> Inline
-press (Span (a,(y:ys),c) xs) | y == pack "math-tex" = Prelude.head (convert xs)
+press (Span (_,x:_,_) l) | x == pack "math-tex" = convert l
 press x = x
 
-convert :: [Inline] -> [Inline]
-convert ((Str x):xs) = [Math InlineMath (Data.Text.dropEnd 2 (Data.Text.drop 2 x))]
-convert xs = xs
+convert :: [Inline] -> Inline
+convert l = Math InlineMath (Data.Text.dropEnd 2 (Data.Text.drop 2 (fixdegree (myconcat l)))) 
+
+myconcat :: [Inline] -> Text
+myconcat l = (pack (Prelude.foldl (\ y (Str x) -> y++(unpack x)) "" (Prelude.map stringify l)))
+
+stringify :: Inline -> Inline
+stringify x@(Str _) = x
+stringify Space = Str (pack " ")
+
+fixdegree :: Text -> Text
+fixdegree x = replace (pack "\\degree") (pack "°") x
 
 -- EXAMPLE INPUT PANDOC AST
 -- 

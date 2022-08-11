@@ -1,1 +1,0 @@
-python echo.py | pandoc -f html -t json --filter Filter.hs -o ast_q1.json
