@@ -1,0 +1,30 @@
+{
+    "pandoc-api-version": [1, 22, 2],
+    "meta": {},
+    "blocks": [
+        {
+            "t": "Plain",
+            "c": [
+                {
+                    "t": "Math",
+                    "c": [
+                        { "t": "InlineMath" },
+                        "\\begin{matrix}\n{(0 + 1)^{2} + m(0)} & {= (0 - n)(0 + 3) + 4n} \\\\\n1 & {= n} \\\\\n\\end{matrix}"
+                    ]
+                }
+            ]
+        },
+        {
+            "t": "Para",
+            "c": [
+                {
+                    "t": "Math",
+                    "c": [
+                        { "t": "InlineMath" },
+                        "\\begin{aligned} (0+*a)^2+m(0)&=(0-n)(0+*b)+*cn\\\\ *n&=n \\end{aligned}"
+                    ]
+                }
+            ]
+        }
+    ]
+}

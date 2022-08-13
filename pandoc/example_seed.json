@@ -1,0 +1,16 @@
+[
+    {
+        "id": "DS2022D01",
+        "bank": "HKDSE 2022",
+        "folder": "HKDSE_Replica_Math_MC_2022",
+        "gene": {
+            "qn": "<p><span class=\"math-tex\">\\(\\alpha^2+*c\\alpha+*d\\beta^2+*e\\beta\\)</span></p>\n\n<ul>\n\t<li><span class=\"math-tex\">\\(\\left(\\alpha+*f\\beta\\right)\\left(\\alpha+*g\\beta+*h\\right)\\)</span></li>\n</ul>\n\n<p>&nbsp;</p>\n",
+            "sol": "<p><span class=\"math-tex\">\\(\\alpha^2+*c\\alpha+*d\\beta^2+*e\\beta\\\\ =\\alpha^2+*d\\beta^2+*c\\alpha+*e\\beta\\\\ =(\\alpha+\\beta)(\\alpha-\\beta)+*c(\\alpha+*j\\beta) \\\\=\\left(\\alpha+*f\\beta\\right)\\left(\\alpha+*g\\beta+*h\\right)\\)</span></p>\n\n<p>&nbsp;</p>\n",
+            "populate": "f = RndU()\r\ng = RndU()\r\nh = RndU()\r\n\r\nc = h\r\nd = f * g\r\ne = f * h\r\n\r\nj = e/c\r\n\r\noptions = {\r\n    f: [f, -f, -f],\r\n    g: [g, -g, -g],\r\n    h: [h, -h, -h]\r\n}\r\n",
+            "validate": "d === -1",
+            "preprocess": "",
+            "postprocess": "",
+            "remark": "OK"
+        }
+    }
+]
